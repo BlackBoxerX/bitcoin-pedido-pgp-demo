@@ -1,37 +1,61 @@
-# Bitcoin Pedido PGP Demo
+# Bitcoin Order PGP Demo
 
-Projeto educativo para pedidos pagos via Bitcoin (Testnet), com mensagem secreta PGP liberada após o pagamento.
+An educational project for Bitcoin (Testnet) paid orders, with PGP-encrypted secret messages released after payment confirmation.
 
-## 🚀 Tecnologias
+---
+
+## 🚀 Tech Stack
+
 - Java + Spring Boot
 - H2 Database
-- Integração com BlockCypher API (Testnet)
-- Criptografia PGP (BouncyCastle)
+- Integration with BlockCypher API (Testnet)
+- PGP Encryption (BouncyCastle)
 
-## 💡 Como funciona
+---
 
-1. O cliente cria um pedido informando nome, email, valor e **chave pública PGP**.
-2. O sistema gera um endereço Bitcoin (testnet) para o pagamento.
-3. O usuário paga usando testnet BTC.
-4. Ao confirmar o pagamento, o sistema:
-    - Muda status do pedido para "PAGO"
-    - Gera uma mensagem secreta, criptografada com a chave PGP do cliente
-5. O cliente pode descriptografar a mensagem usando sua chave privada.
+## 💡 How It Works
 
-## 🔨 Como rodar
+1. The client creates an order with name, email, amount, and **PGP public key**.
+2. The system generates a unique **Bitcoin (Testnet) address** for payment.
+3. The user pays with Testnet BTC.
+4. Upon payment confirmation, the system:
+    - Sets the order status to `"PAID"`
+    - Generates a secret message, encrypted with the client’s PGP key
+    - The client can decrypt the message using their private PGP key
 
-1. Clone este repositório
-2. Coloque seu token da BlockCypher em `PedidoService.java`
-3. `./mvnw spring-boot:run`
-4. Use Postman/Insomnia ou outro cliente REST para interagir com a API
+---
 
-### Exemplos de uso
+## 🔨 How to Run
 
-#### Criar pedido (POST `/api/pedidos`)
+1. **Clone this repository:**
+    ```bash
+    git clone https://github.com/YOURUSERNAME/bitcoin-order-pgp-demo.git
+    cd bitcoin-order-pgp-demo
+    ```
+
+2. **Add your BlockCypher API token:**  
+   Set your token in `PedidoService.java`
+
+3. **Start the backend:**
+    ```bash
+    ./mvnw spring-boot:run
+    # or
+    mvn spring-boot:run
+    ```
+
+4. **Interact with the API:**  
+   Use Postman, Insomnia, or any REST client.
+
+---
+
+## 📦 API Usage Example
+
+**Create Order (POST /api/pedidos):**
 ```json
 {
-  "nomeCliente": "SeuNome",
-  "email": "seu@email.com",
+  "nomeCliente": "YourName",
+  "email": "your@email.com",
   "valor": 0.001,
-  "chavePgp": "-----BEGIN PGP PUBLIC KEY BLOCK-----\\nSUA CHAVE AQUI\\n-----END PGP PUBLIC KEY BLOCK-----"
+  "chavePgp": "-----BEGIN PGP PUBLIC KEY BLOCK-----\\nYOUR KEY HERE\\n-----END PGP PUBLIC KEY BLOCK-----"
 }
+
